@@ -3,10 +3,10 @@ import './App.css'
 import useLocalStorage from './use-local-storage'
 import sha1 from 'sha1'
 
-const BIRTH_TIME = '01:00:00 GMT+0200 (Central European Summer Time'
+const BIRTH_TIME = '12:15:00 GMT+0200 (Central European Summer Time'
 const SIXTY_YEARS_TIME = new Date(`Wed Sep 21 2019 ${BIRTH_TIME}`).getTime()
 const GIFTS_TIME = new Date(
-  'Sat Sep 21 2019 01:01:00 GMT+0200 (Central European Summer Time'
+  'Sat Sep 21 2019 15:00:00 GMT+0200 (Central European Summer Time'
 ).getTime()
 const GOAL = 60
 const VOLUME = 0.1
@@ -19,7 +19,7 @@ const round = num =>
       ? '0'.repeat(13)
       : (Math.random() / 10 ** 60).toString().substr(2, 13)
   }`
-// const AMOUNT =
+
 function App() {
   const [muted, setMuted] = useLocalStorage(false)
   const { time } = useTime()
@@ -30,7 +30,6 @@ function App() {
   const isPartyTime = current >= 0
   const daysTillGifts = toDays(time - GIFTS_TIME)
   const isTimeForGifts = daysTillGifts >= 0
-  const ratioFromGoal = GOAL / currentInYears
   const audioRef = useRef()
   const isBirthdayChild = () =>
     window.location.hash.length &&
@@ -83,7 +82,7 @@ function App() {
                   />
                 </>
               ) : (
-                'wait untill later today!'
+                'wait until later today!'
               )
             ) : (
               'soon!'
@@ -99,7 +98,7 @@ function App() {
       <div className="App-logo" style={{ color: 'red', width: 'min-content' }}>
         access denied
       </div>
-      wait untill {new Date(SIXTY_YEARS_TIME).toLocaleTimeString()}
+      wait until {new Date(SIXTY_YEARS_TIME).toLocaleTimeString()}
     </div>
   )
 }
