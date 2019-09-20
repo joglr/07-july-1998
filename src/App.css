@@ -1,13 +1,17 @@
 .App {
   text-align: center;
+  user-select: none;
 }
 
 .App-logo {
-  height: 40vmin;
+  font-size: 20vmin;
+  pointer-events: none;
+  margin: 20px;
+  padding: 0.1em 0;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,6 +21,26 @@
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.App-button {
+}
+
+.App-input {
+  font-family: 'Cascadia Code';
+  font-size: 2rem;
+  width: fit-content;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-bottom: 0.2em #fff solid;
+  padding: 0.3em;
+  outline: none;
+}
+
+.App-input::placeholder {
+  color: rgba(255, 255, 255, 0.808);
+}
+
+p {
+  word-break: break-all;
 }
