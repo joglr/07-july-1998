@@ -3,10 +3,10 @@ import './App.css'
 import useLocalStorage from './use-local-storage'
 import sha1 from 'sha1'
 
-const BIRTH_TIME = '16:15:00 GMT+0200 (Central European Summer Time'
+const BIRTH_TIME = '16:30:00 GMT+0200 (Central European Summer Time'
 const SIXTY_YEARS_TIME = new Date(`Wed Sep 21 2019 ${BIRTH_TIME}`).getTime()
 const GIFTS_TIME = new Date(
-  'Sat Sep 21 2019 16:20:00 GMT+0200 (Central European Summer Time'
+  'Sat Sep 21 2019 16:35:00 GMT+0200 (Central European Summer Time'
 ).getTime()
 const GOAL = 60
 const VOLUME = 0.1
