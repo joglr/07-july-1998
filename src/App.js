@@ -13,7 +13,7 @@ const round = num =>
   `${num.toFixed(GOAL - 13)}${
     Number(num.toFixed(13).split('.')[1]) === 0
       ? '0'.repeat(13)
-      : (Math.random() / 10 ** 60).toString().substr(2, 13)
+      : (Math.random() / 10 ** GOAL).toString().substr(2, 13)
   }`
 
 function App() {
