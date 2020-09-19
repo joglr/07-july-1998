@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 import useLocalStorage from './use-local-storage'
 
-const BIRTH_TIME = '16:30:00 GMT+0200 (Central European Summer Time'
+const BIRTH_TIME = '12:15:00 GMT+0200 (Central European Summer Time'
 const BIRTHDAY_TIME = new Date(`Wed Sep 21 ${new Date().getFullYear()} ${BIRTH_TIME}`).getTime()
 const GOAL = new Date().getFullYear() - 1959
 const VOLUME = 0.1
