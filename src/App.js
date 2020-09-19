@@ -4,11 +4,11 @@ import useLocalStorage from './use-local-storage'
 import sha1 from 'sha1'
 
 const BIRTH_TIME = '16:30:00 GMT+0200 (Central European Summer Time'
-const SIXTY_YEARS_TIME = new Date(`Wed Sep 21 2019 ${BIRTH_TIME}`).getTime()
+const SIXTY_YEARS_TIME = new Date(`Wed Sep 21 2020 ${BIRTH_TIME}`).getTime()
 const GIFTS_TIME = new Date(
-  'Sat Sep 21 2019 16:35:00 GMT+0200 (Central European Summer Time'
+  'Sat Sep 21 2020 16:35:00 GMT+0200 (Central European Summer Time'
 ).getTime()
-const GOAL = 60
+const GOAL = 61
 const VOLUME = 0.1
 const toDays = ms => ms / 1000 / 60 / 60 / 24
 const toYears = ms => ms / 1000 / 60 / 60 / 24 / 365.254
@@ -39,9 +39,7 @@ function App() {
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = muted ? 0 : VOLUME
   }, [muted])
-  return sha1(p.trim()) === 'b686ff235fa058912bac94a211fb38f2a0a23611' ? (
-    (window.location = `${window.location.hash.replace('#', '')}.pdf`)
-  ) : isBirthdayChild() || isPartyTime ? (
+  return (
     <div
       className="App"
       onClick={() => audioRef.current && audioRef.current.play()}>
@@ -92,13 +90,6 @@ function App() {
           ''
         )}
       </header>
-    </div>
-  ) : (
-    <div className="App-header">
-      <div className="App-logo" style={{ color: 'red', width: 'min-content' }}>
-        access denied
-      </div>
-      wait until {new Date(SIXTY_YEARS_TIME).toLocaleTimeString()}
     </div>
   )
 }
