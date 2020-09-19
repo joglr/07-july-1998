@@ -1,20 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './App.css'
 import useLocalStorage from './use-local-storage'
-import sha1 from 'sha1'
 
 const BIRTH_TIME = '16:30:00 GMT+0200 (Central European Summer Time'
-const SIXTY_YEARS_TIME = new Date(`Wed Sep 21 2020 ${BIRTH_TIME}`).getTime()
-const GIFTS_TIME = new Date(
-  'Sat Sep 21 2020 16:35:00 GMT+0200 (Central European Summer Time'
-).getTime()
+const BIRTHDAY_TIME = new Date(`Wed Sep 21 ${new Date().getFullYear()} ${BIRTH_TIME}`).getTime()
 const GOAL = 61
 const VOLUME = 0.1
-const toDays = ms => ms / 1000 / 60 / 60 / 24
+// const toDays = ms => ms / 1000 / 60 / 60 / 24
 const toYears = ms => ms / 1000 / 60 / 60 / 24 / 365.254
 
 const round = num =>
-  `${num.toFixed(60 - 13)}${
+  `${num.toFixed(GOAL - 13)}${
     Number(num.toFixed(13).split('.')[1]) === 0
       ? '0'.repeat(13)
       : (Math.random() / 10 ** 60).toString().substr(2, 13)
@@ -23,18 +19,14 @@ const round = num =>
 function App() {
   const [muted, setMuted] = useLocalStorage(false)
   const { time } = useTime()
-  const [p, setP] = useState('')
-  const current = time - SIXTY_YEARS_TIME
-  const currentInYears = 60 + toYears(current)
+  // const [p, setP] = useState('')
+  const current = time - BIRTHDAY_TIME
+  const currentInYears = GOAL + toYears(current)
   const timeToGoalInYears = GOAL - currentInYears
   const isPartyTime = current >= 0
-  const daysTillGifts = toDays(time - GIFTS_TIME)
-  const isTimeForGifts = daysTillGifts >= 0
+  // const daysTillGifts = toDays(time - GIFTS_TIME)
+  // const isTimeForGifts = daysTillGifts >= 0
   const audioRef = useRef()
-  const isBirthdayChild = () =>
-    window.location.hash.length &&
-    window.location.hash.startsWith('#e6') &&
-    window.location.hash.endsWith('a4')
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = muted ? 0 : VOLUME
@@ -56,39 +48,11 @@ function App() {
           </>
         ) : (
           <p>
-            {round(Math.min(currentInYears, 60))} yr + <br /> 0
+            {round(Math.min(currentInYears, GOAL))} yr + <br /> 0
             {round(Math.max(timeToGoalInYears, 0))} yr =
           </p>
         )}
         <div className="App-logo">{isPartyTime ? `🎈${GOAL}🎂` : '?'}</div>
-        {isBirthdayChild() ? (
-          <div>
-            <br />
-            <br />
-            {isPartyTime ? (
-              isTimeForGifts ? (
-                <>
-                  <p>To open gift,</p>
-                  <input
-                    value={p}
-                    onChange={e => setP(e.target.value)}
-                    autoFocus
-                    title="Det sædvanlige..."
-                    className="App-input"
-                    placeholder="Input password..."
-                    type="password"
-                  />
-                </>
-              ) : (
-                'wait until later today!'
-              )
-            ) : (
-              'soon!'
-            )}
-          </div>
-        ) : (
-          ''
-        )}
       </header>
     </div>
   )
